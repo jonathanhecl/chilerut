@@ -1,3 +1,3 @@
-module chile-rut
+module chilerut
 
 go 1.12
