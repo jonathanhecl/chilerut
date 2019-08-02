@@ -1,4 +1,4 @@
-package rut
+package chilerut
 
 import (
 	"strconv"
