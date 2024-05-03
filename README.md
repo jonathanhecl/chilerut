@@ -60,3 +60,10 @@ chilerut.Format("12667869k")
 chilerut.Format("   000012667869k   ")
 # returns "12667869-K"
 ```
+
+## Compare RUT
+
+```
+chilerut.compare("12667869k", "12.667.869-K")
+# return true
+```
