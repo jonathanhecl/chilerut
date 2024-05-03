@@ -64,6 +64,10 @@ chilerut.Format("   000012667869k   ")
 ## Compare RUT
 
 ```
-chilerut.compare("12667869k", "12.667.869-K")
-# return true
+chilerut.Compare("12667869k", "12.667.869-K")
+# return True
+chilerut.Compare("12667869-k", "12.667.869-K")
+# return True
+chilerut.Compare("12.667.861-K", "12.667.869-K")
+# return False
 ```
