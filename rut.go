@@ -68,3 +68,12 @@ func VerificationDigit(rut string) (dv string) {
 	}
 	return dv
 }
+
+func Compare(rut1, rut2 string) bool {
+	rut1 = Format(rut1)
+	rut2 = Format(rut2)
+	if strings.EqualFold(rut1, rut2) {
+		return true
+	}
+	return false
+}

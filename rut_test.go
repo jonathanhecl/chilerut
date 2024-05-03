@@ -21,6 +21,13 @@ func TestFormat(t *testing.T) {
 			"12667869-K",
 		},
 		{
+			"12.667.869-k",
+			args{
+				rut: "12.667.869.k",
+			},
+			"12667869-K",
+		},
+		{
 			"12-667-869-k",
 			args{
 				rut: "12-667-869-k",
@@ -161,6 +168,58 @@ func TestValid(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := Valid(tt.args.rut); got != tt.want {
 				t.Errorf("Valid() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_Compare(t *testing.T) {
+	type args struct {
+		rut1 string
+		rut2 string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			"12.667.869-K == 12.667.869-k",
+			args{
+				rut1: "12.667.869-K",
+				rut2: "12.667.869-k",
+			},
+			true,
+		},
+		{
+			"12.667.869-K != 12.667.861-K",
+			args{
+				rut1: "12.667.869-K",
+				rut2: "12.667.861-K",
+			},
+			false,
+		},
+		{
+			"12667869K == 12.667.869-k",
+			args{
+				rut1: "12667869K",
+				rut2: "12.667.869-k",
+			},
+			true,
+		},
+		{
+			"12.667.869-K == 12667869k",
+			args{
+				rut1: "12.667.869-K",
+				rut2: "12667869k",
+			},
+			true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Compare(tt.args.rut1, tt.args.rut2); got != tt.want {
+				t.Errorf("Compare() = %v, want %v", got, tt.want)
 			}
 		})
 	}
